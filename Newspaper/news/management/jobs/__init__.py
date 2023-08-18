@@ -1,0 +1,1 @@
+from .weekly_news_job import *

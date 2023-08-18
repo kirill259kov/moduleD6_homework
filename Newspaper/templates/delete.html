@@ -1,0 +1,34 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block content %}
+<h2>Вы действительно хотите удалить запись?</h2>
+<table>
+    <tr>
+        <td>
+            Заголовок
+        </td>
+        <td>
+            Дата публикации
+        </td>
+        <td>
+            Фрагмент содержания
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{ post.title|truncatewords:7|censor }}
+        </td>
+        <td>
+            {{ post.dateCreation|date:'d.M.Y'  }}
+        </td>
+        <td>
+            {{ post.text|truncatechars:50|censor }}
+        </td>
+    </tr>
+</table>
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Подтвердить удаление"></form>
+{% endblock content %}
